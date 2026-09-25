@@ -1,0 +1,28 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Build
+      run: make
+
+    - name: Test
+      run: make test
+
+    - name: Smoke test CLI
+      run: |
+        echo "Hello VelaPack!" > smoke.txt
+        ./vlp c smoke.txt
+        ./vlp t smoke.txt.vlp
+        ./vlp d smoke.txt.vlp smoke.out
+        diff smoke.txt smoke.out
