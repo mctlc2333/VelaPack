@@ -141,6 +141,7 @@ int main(void) {
 ```
 
 - `vlp_compress` 成功时 `*out` 由库 `malloc` 分配，调用者负责 `free`
+- 详细 API 见 [docs/API.md](docs/API.md)
 
 ## 格式标识
 
@@ -181,6 +182,12 @@ int main(void) {
 - `vlp_compress` / `vlp_decompress`：**线程安全**。CRC 表和长度码表都使用 C++11 magic static 一次性初始化。
 - `vlp_file_compress` / `vlp_file_decompress` / `vlp_file_test`：线程安全，但并发写同一文件需调用方自行同步。
 - `vlp_archive_info_free`：仅可调用一次。重复调用未定义行为。
+
+## 文档
+
+- [文件格式规范](docs/FORMAT_SPEC.md)
+- [算法设计](docs/ALGORITHM.md)
+- [C API 参考](docs/API.md)
 
 ## 许可证
 
